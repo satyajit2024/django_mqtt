@@ -1,16 +1,15 @@
-"""
-ASGI config for django_mqtt project.
+import os 
 
-It exposes the ASGI callable as a module-level variable named ``application``.
+from django.core.asgi import get_asgi_application 
+from channels.routing import ProtocolTypeRouter , URLRouter
+import mqtt_app.routing 
+# from channels.auth import AuthMiddlewareStack 
 
-For more information on this file, see
-https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/
-"""
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_mqtt.settings") 
 
-import os
-
-from django.core.asgi import get_asgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_mqtt.settings')
-
-application = get_asgi_application()
+application = ProtocolTypeRouter({ 
+"http": get_asgi_application(), 
+"websocket": URLRouter( 
+			mqtt_app.routing.websocket_urlpatterns 
+		)
+}) 

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,7 +69,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_mqtt.wsgi.application'
+# WSGI_APPLICATION = 'django_mqtt.wsgi.application'
+ASGI_APPLICATION = 'django_mqtt.asgi.application'
 
 
 # Database
@@ -134,3 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MQTT_BROKER_HOST = 'localhost'  # Replace with your Mosquitto broker's host
 MQTT_BROKER_PORT = 1883  # Replace with your Mosquitto broker's port
+

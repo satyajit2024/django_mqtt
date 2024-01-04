@@ -1,8 +1,6 @@
 from django.shortcuts import render
-from .mqtt_handler import client
 
+# Create your views here. 
 
-def my_view(request):
-    # Your view logic here
-    client.publish("your_topic", "Hello, MQTT!")
-    return render(request, 'template.html')
+def index(request): 
+	return render(request, 'index.html', {}) 
